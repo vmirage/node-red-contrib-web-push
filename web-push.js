@@ -23,6 +23,12 @@ module.exports = function (RED) {
               privateKey: node.vapidConfiguration.privateKey
             }
           }
+          
+          if (msg.urgency && msg.urgency.length > 0) {
+            options['headers'] = {
+              Urgency: msg.urgency,
+            }
+          }
 
           if (node.vapidConfiguration.gcmApiKey) {
             options['gcmAPIKey'] = node.vapidConfiguration.gcmApiKey
